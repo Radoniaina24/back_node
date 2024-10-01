@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
+const configCors = {
+  origin: "*",
+  credential: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.options("", cors(configCors));
 const cors = require("cors");
-app.use(cors());
+app.use(cors(configCors));
 require("dotenv").config();
 const dbConnect = require("./config/dbConnect");
 const userRoutes = require("./routes/userRoutes");
